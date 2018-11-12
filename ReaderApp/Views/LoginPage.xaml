@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="ReaderApp.Views.LoginPage" xmlns:local="clr-namespace:ReaderApp;assembly=ReaderApp" >
+
+    <ContentPage.Resources>
+       <ResourceDictionary>
+            <local:BooleanToObjectConverter x:Key="BooleanToObjectConverter"/>
+       </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <ScrollView>
+            <AbsoluteLayout BackgroundColor="Yellow">
+                <StackLayout AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All" >
+                    <StackLayout>
+                        <Image Source="" VerticalOptions="CenterAndExpand" WidthRequest="300" Margin="50,0" />
+                    </StackLayout>
+                    <StackLayout VerticalOptions="CenterAndExpand" Padding="0,0,0,70">
+                        <StackLayout HorizontalOptions="CenterAndExpand" Padding="0" WidthRequest="300" >
+                            <Label Text="Login" HorizontalOptions="CenterAndExpand" TextColor="White" FontSize="16" FontAttributes="Bold" ></Label> 
+                        </StackLayout> 
+                        <StackLayout Spacing="10" HorizontalOptions="FillAndExpand" Padding="50,20" >
+                            <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand">
+                                <Entry x:Name="UsernameEntry" Placeholder="Username" HeightRequest="44" HorizontalOptions="Center" WidthRequest="300">
+                                    <Entry.Behaviors>
+                                        <local:EmailValidatorBehavior x:Name="EmailValidator" />
+                                    </Entry.Behaviors>
+                                </Entry>
+                                <Image Source="{Binding Source={x:Reference EmailValidator}, Path=IsValid,Converter={StaticResource BooleanToObjectConverter}}" HeightRequest="20"/>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand">
+                                <Entry x:Name="PasswordEntry" Placeholder="Password" IsPassword="true" HeightRequest="44" HorizontalOptions="Center" WidthRequest="300">
+                                    <Entry.Behaviors>
+                                        <local:PasswordValidatorBehavior x:Name="PasswordValidator" />
+                                    </Entry.Behaviors>
+                                </Entry>
+                                <Image Source="{Binding Source={x:Reference PasswordValidator}, Path=IsValid,Converter={StaticResource BooleanToObjectConverter}}" HeightRequest="20"/>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand">
+                                <Button x:Name="LoginButton" Text="Login" FontSize="18"  HorizontalOptions="Center" WidthRequest="300" BackgroundColor="#3dc054" BorderRadius="10"/>
+                            </StackLayout>
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+            </AbsoluteLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
